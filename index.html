@@ -1,12 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>StatCell</title>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StatCell</title>
+
+<!-- League Spartan Font -->
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* General styles */
+body {
+    margin: 0;
+    font-family: 'League Spartan', sans-serif;
+    background-color: #0B1A3A; /* dark navy like your image */
+    color: #FFFFFF;
+    scroll-behavior: smooth;
+}
+
+/* Header image */
+#header {
+    width: 100%;
+    height: 300px;
+    background: url('29482049-4808-4375-8397-0f1643c0a370.png') no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Navigation buttons container */
+#nav-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: -40px; /* pull buttons over header */
+    gap: 2px;
+}
+
+/* Buttons */
+.game-button {
+    flex: 1;
+    padding: 15px 0;
+    text-align: center;
+    background-color: #4472C4; /* unselected buttons */
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    border: 3px solid transparent; /* unselected */
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.game-button.active {
+    background-color: #70D7AE; /* Brawl-style active color */
+    border: 3px solid #FFFFFF;
+}
+
+.game-button:hover {
+    background-color: #36588F; /* darker hover effect */
+}
+
+/* Sections */
+section {
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    background-color: #0C224A;
+    border-radius: 10px;
+}
+
+section h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+section p {
+    color: #C0D4FF;
+    line-height: 1.5;
+}
+</style>
 </head>
 
 <body>
-    <h1>Welcome to StatCell</h1>
-    <p>Your stats platform is coming soon.</p>
+
+<!-- Header image -->
+<div id="header"></div>
+
+<!-- Navigation buttons -->
+<div id="nav-buttons">
+    <div class="game-button active" data-target="brawl">Brawl Stars Stats/Guides</div>
+    <div class="game-button" data-target="clash">Clash Royale Arena Guides/Decks</div>
+    <div class="game-button" data-target="clashofclans">Clash of Clans Guides (Coming Soon)</div>
+</div>
+
+<!-- Sections -->
+<section id="brawl">
+    <h2>Brawl Stars</h2>
+    <p>Top brawlers, usage stats, and guides.</p>
+</section>
+
+<section id="clash">
+    <h2>Clash Royale</h2>
+    <p>Top decks, arena guides, and win rates.</p>
+</section>
+
+<section id="clashofclans">
+    <h2>Clash of Clans</h2>
+    <p>Coming soon!</p>
+</section>
+
+<script>
+    // JS for scrolling and active button
+    const buttons = document.querySelectorAll('.game-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            buttons.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+            // Scroll to section
+            const targetId = button.getAttribute('data-target');
+            const section = document.getElementById(targetId);
+            section.scrollIntoView({behavior: 'smooth'});
+        });
+    });
+</script>
+
 </body>
 </html>
